@@ -38,10 +38,8 @@ public class Model implements Service {
         ourCatalog.remove(index-1);
     }
 
-
     @Override
     public void showAll() {
-
         createHelpAL();
         StringBuilder stringBuilder = new StringBuilder();
         int num = 1;
@@ -61,6 +59,7 @@ public class Model implements Service {
 
     @Override
     public void lottery(){
+        // разыгрываем подарок
         Random rnd = new Random();
         ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
         for (String el: ourCatalog) {
@@ -74,52 +73,66 @@ public class Model implements Service {
         }
 
         int randomNumber = rnd.nextInt(totalPercentage);
+
         int currentPercentage = 0;
+        ArrayList<String> winList = new ArrayList<>();
         for (ArrayList<String> toy: list) {
             currentPercentage += Integer.parseInt(toy.get(7));
             if (randomNumber < currentPercentage){
-                System.out.println(toy);
-                break;
+                winList.addAll(toy);
+                break; // или все-таки return????
             }
         }
 
+        // находим индекс выигранной игрушки
+        int index = 0;
+        for (int i = 0; i < ourCatalog.size(); i++) {
+            if (ourCatalog.get(i).contains(winList.get(0))) {
+                index = i;
+            }
+        }
 
+        // отнимаем подарок из общего количества
+        ArrayList<String> parts = new ArrayList<>(Arrays.asList(ourCatalog.get(index).split(",")));
+        int num = Integer.parseInt(parts.get(2));
+        num = num - 1;
+        String newNum = Integer.toString(num);
+        parts.set(2,newNum);
+        StringBuilder nn = new StringBuilder();
+        for (String el: parts) {
+            if (nn.length()>0) nn.append(",");
+            nn.append(el);
+        }
+        ourCatalog.set(index,nn.toString());
 
+        // вносим изменения в наш общий каталог
+        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
+                "db\\Catalog.txt");
+        ourDb.write(ourCatalog);
 
+        // выводим на экран выигрыш
+        ArrayList<String> al = new ArrayList<>(Arrays.asList(ourCatalog.get(index).split(",")));
+        String newQ = "1";
+        al.set(2,newQ);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(al);
 
+        createHelpAL();
+        for (int j = 0; j < al.size()-1; j++) {
+            prize.append(namePosition.get(j));
+            prize.append(al.get(j));
+        }
 
+        System.out.println(prize);
 
+        // записываем в список подарков
+        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\" +
+                "program\\db\\WonToys.txt");
 
-
-//        // отнимаем подарок из общего количества
-//        ArrayList<String> parts = new ArrayList<>(Arrays.asList(ourCatalog.get(random).split(",")));
-//        int num = Integer.parseInt(parts.get(2));
-//        num = num - 1;
-//        String newNum = Integer.toString(num);
-//        parts.set(2,newNum);
-//        StringBuilder nn = new StringBuilder();
-//        for (String el: parts) {
-//            if (nn.length()>0) nn.append(",");
-//            nn.append(el);
-//        }
-//        ourCatalog.set(random,nn.toString());
-//
-//
-//        // вносим изменения в наш общий каталог
-//        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
-//                "db\\Catalog.txt");
-//        ourDb.write(ourCatalog);
-//
-//        // записываем в список подарков
-//        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\" +
-//                "program\\db\\WonToys.txt");
-//
-//        ArrayList<String> prizeList = new ArrayList<>();
-//        prizeList.add(prize.toString());
-//        ourPrize.write(prizeList);
+        ArrayList<String> prizeList = new ArrayList<>();
+        prizeList.add(stringBuilder.toString());
+        ourPrize.write(prizeList);
     }
-
-
 
 
     @Override
