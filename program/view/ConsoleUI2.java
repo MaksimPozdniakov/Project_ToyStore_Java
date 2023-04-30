@@ -2,10 +2,7 @@ package program.view;
 
 
 
-import program.model.categories.BabyProducts;
-import program.model.categories.LEGO;
-import program.model.categories.SoftToys;
-import program.model.categories.TableGames;
+import program.model.baseClass.Toy;
 import program.model.commands.MainMenu;
 import program.model.commands.Validator;
 import program.presenter.Presenter;
@@ -67,7 +64,16 @@ public class ConsoleUI2 implements View {
     }
 
     public void saveCatalog(){
+        System.out.println("Изменения сохранены");
         presenter.save();
+    }
+
+    public void delToy(){
+        showCatalog();
+        System.out.print("Какую позицию необходимо удалить? ");
+        int index = scanner.nextInt();
+        System.out.println("Позиция удалена");
+        presenter.delToy(index);
     }
 
     public void closeCatalog(){
@@ -76,115 +82,29 @@ public class ConsoleUI2 implements View {
     }
 
     public void newToy() throws FileNotFoundException {
-        while (true){
-            boolean flag = true;
-            String menu = """
-                1. Добавить детский товар
-                2. Добавить LEGO
-                3. Добавить мягкую игрушку
-                4. Добавить настольную игру
-                5. Выйти в главное меню
-                """;
-            System.out.println(menu);
-            System.out.print("Что буем добавлять? ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
 
-            switch (choice){
-                case 1 -> {
-                    System.out.print("Укажите артикул: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Укажите тип товара: ");
-                    String type = scanner.next();
-                    System.out.print("Укажите количество: ");
-                    int quantity = scanner.nextInt();
-                    System.out.print("Укажите страну производства: ");
-                    String countryOfManufacture = scanner.next();
-                    System.out.print("Укажите минимальный возраст: ");
-                    String minimumAge = scanner.next();
-                    System.out.print("Укажите материал изготовления: ");
-                    String material = scanner.next();
-                    System.out.print("Укажите бренд: ");
-                    String brand = scanner.next();
+        System.out.print("Укажите артикул: ");
+        int id = scanner.nextInt();
+        System.out.print("Укажите тип игрушки: ");
+        String type = scanner.next();
+        System.out.print("Укажите количество: ");
+        int quantity = scanner.nextInt();
+        System.out.print("Укажите страну производства: ");
+        String countryOfManufacture = scanner.next();
+        System.out.print("Укажите минимальный возраст: ");
+        int minimumAge = scanner.nextInt();
+        System.out.print("Укажите материал изготовления: ");
+        String material = scanner.next();
+        System.out.print("Укажите бренд: ");
+        String brand = scanner.next();
+        System.out.println("Укажите частоту выпадения игрушки (число от 1 до 100): ");
+        int frequency = scanner.nextInt();
 
-                    presenter.addNewToy(new BabyProducts(id,type,quantity,countryOfManufacture,minimumAge,material,brand));
-                }
-                case 2 ->{
-                    System.out.print("Укажите артикул: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Укажите тип товара: ");
-                    String type = scanner.next();
-                    System.out.print("Укажите количество: ");
-                    int quantity = scanner.nextInt();
-                    System.out.print("Укажите страну производства: ");
-                    String countryOfManufacture = scanner.next();
-                    System.out.print("Укажите минимальный возраст: ");
-                    String minimumAge = scanner.next();
-                    System.out.print("Укажите материал изготовления: ");
-                    String material = scanner.next();
-                    System.out.println("Укажите коллекцию: ");
-                    String collection = scanner.next();
-                    System.out.println("Укажите тип конструктора: ");
-                    String constructorType = scanner.next();
-                    System.out.print("Укажите бренд: ");
-                    String brand = scanner.next();
+        presenter.addNewToy(new Toy(id, type, quantity, countryOfManufacture, minimumAge, material,
+                brand, frequency));
 
-                    presenter.addNewToy(new LEGO(id,type,quantity,countryOfManufacture,minimumAge,material,collection,
-                            constructorType,brand));
-                }
-                case 3 -> {
-                    System.out.print("Укажите артикул: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Укажите тип товара: ");
-                    String type = scanner.next();
-                    System.out.print("Укажите количество: ");
-                    int quantity = scanner.nextInt();
-                    System.out.print("Укажите страну производства: ");
-                    String countryOfManufacture = scanner.next();
-                    System.out.print("Укажите минимальный возраст: ");
-                    String minimumAge = scanner.next();
-                    System.out.print("Укажите материал изготовления: ");
-                    String material = scanner.next();
-                    System.out.println("Укажите наполнитель: ");
-                    String filler = scanner.next();
-                    System.out.print("Укажите бренд: ");
-                    String brand = scanner.next();
+        System.out.println("Новая игрушка добавлена");
 
-                    presenter.addNewToy(new SoftToys(id,type,quantity,countryOfManufacture,minimumAge,material,filler,
-                            brand));
-                }
-                case 4 -> {
-                    System.out.print("Укажите артикул: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Укажите тип товара: ");
-                    String type = scanner.next();
-                    System.out.print("Укажите количество: ");
-                    int quantity = scanner.nextInt();
-                    System.out.print("Укажите страну производства: ");
-                    String countryOfManufacture = scanner.next();
-                    System.out.print("Укажите минимальный возраст: ");
-                    String minimumAge = scanner.next();
-                    System.out.print("Укажите материал изготовления: ");
-                    String material = scanner.next();
-                    System.out.println("Укажите тип насольной игры: ");
-                    String typeTableGames = scanner.next();
-                    System.out.println("Укажите минимальное кол-во игроков: ");
-                    int minNumberOfPlayers = scanner.nextInt();
-                    System.out.println("Укажите максимальное кол-во игроков: ");
-                    int maxNumberOfPlayers = scanner.nextInt();
-                    System.out.print("Укажите бренд: ");
-                    String brand = scanner.next();
-
-                    presenter.addNewToy(new TableGames(id,type,quantity,countryOfManufacture,minimumAge,material,
-                            typeTableGames,minNumberOfPlayers,maxNumberOfPlayers,brand));
-                }
-                case 5 -> flag = false;
-            }
-            if (!flag){
-                break;
-            }
-        }
-        start();
+//        start();
     }
-
 }

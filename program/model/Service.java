@@ -15,6 +15,6 @@ public interface Service {
 
     void lottery();
 
+    void delToy(int index);
 
-//    void test();
 }

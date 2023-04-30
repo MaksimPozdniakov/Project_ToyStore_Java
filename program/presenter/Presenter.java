@@ -38,4 +38,7 @@ public class Presenter {
         service.write();
     }
 
+    public void delToy(int index){
+        service.delToy(index);
+    }
 }
