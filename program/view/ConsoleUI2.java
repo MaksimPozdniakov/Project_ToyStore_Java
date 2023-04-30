@@ -1,13 +1,10 @@
 package program.view;
 
-
-
 import program.model.baseClass.Toy;
 import program.model.commands.MainMenu;
 import program.model.commands.Validator;
 import program.presenter.Presenter;
 import program.presenter.View;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -25,8 +22,6 @@ public class ConsoleUI2 implements View {
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
     }
-
-
 
     @Override
     public void start() throws FileNotFoundException {
@@ -61,6 +56,7 @@ public class ConsoleUI2 implements View {
 
     public void win(){
         presenter.lottery2();
+        System.out.println();
     }
 
     public void saveCatalog(){
@@ -81,30 +77,40 @@ public class ConsoleUI2 implements View {
         System.exit(0);
     }
 
-    public void newToy() throws FileNotFoundException {
+    public void newToy(){
 
         System.out.print("Укажите артикул: ");
         int id = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.print("Укажите тип игрушки: ");
-        String type = scanner.next();
+        String type = scanner.nextLine();
+
         System.out.print("Укажите количество: ");
         int quantity = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.print("Укажите страну производства: ");
-        String countryOfManufacture = scanner.next();
+        String countryOfManufacture = scanner.nextLine();
+
         System.out.print("Укажите минимальный возраст: ");
         int minimumAge = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.print("Укажите материал изготовления: ");
-        String material = scanner.next();
+        String material = scanner.nextLine();
+
         System.out.print("Укажите бренд: ");
-        String brand = scanner.next();
-        System.out.println("Укажите частоту выпадения игрушки (число от 1 до 100): ");
+        String brand = scanner.nextLine();
+
+        System.out.print("Укажите частоту выпадения игрушки (число от 1 до 100): ");
         int frequency = scanner.nextInt();
+        scanner.nextLine();
 
         presenter.addNewToy(new Toy(id, type, quantity, countryOfManufacture, minimumAge, material,
                 brand, frequency));
 
         System.out.println("Новая игрушка добавлена");
 
-//        start();
     }
 }

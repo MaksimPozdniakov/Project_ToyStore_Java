@@ -6,7 +6,20 @@ import java.util.*;
 public class Model implements Service {
 
     ArrayList<String> ourCatalog = new ArrayList<>();
+
     StringBuilder prize = new StringBuilder();
+    protected ArrayList<String> namePosition;
+
+    public void createHelpAL(){
+        namePosition = new ArrayList<>();
+        namePosition.add("Артикул: ");
+        namePosition.add(", Тип игрушки: ");
+        namePosition.add(", Количество на складе: ");
+        namePosition.add(", Страна производства: ");
+        namePosition.add(", Минимальный возраст: ");
+        namePosition.add(", Материал изготовления: ");
+        namePosition.add(", Бренд: ");
+    }
 
     @Override
     public ArrayList<String> openDb() throws FileNotFoundException {
@@ -28,27 +41,17 @@ public class Model implements Service {
 
     @Override
     public void showAll() {
-        ArrayList<String> namePosition = new ArrayList<>();
-        namePosition.add("Артикул");
-        namePosition.add("Тип игрушки");
-        namePosition.add("Количество на складе");
-        namePosition.add("Страна производства");
-        namePosition.add("Минимальный возраст");
-        namePosition.add("Материал изготовления");
-        namePosition.add("Бренд");
-        namePosition.add("То что нужно удалить");
 
+        createHelpAL();
         StringBuilder stringBuilder = new StringBuilder();
         int num = 1;
         for (String s : ourCatalog) {
             ArrayList<String> new_list = new ArrayList<>(Arrays.asList(s.split(",")));
             stringBuilder.append(num);
             stringBuilder.append(") ");
-            for (int j = 0; j < new_list.size(); j++) {
+            for (int j = 0; j < new_list.size()-1; j++) {
                 stringBuilder.append(namePosition.get(j));
-                stringBuilder.append(": ");
                 stringBuilder.append(new_list.get(j));
-                stringBuilder.append(", ");
             }
             stringBuilder.append("\n");
             num++;
@@ -58,43 +61,65 @@ public class Model implements Service {
 
     @Override
     public void lottery(){
-        // рандомно выбираем приз
         Random rnd = new Random();
-        int random = rnd.nextInt(0,ourCatalog.size() - 1);
-        System.out.println(ourCatalog.size());
-        ArrayList<String> al = new ArrayList<>(Arrays.asList(ourCatalog.get(random).split(",")));
-        String newQ = "1";
-        al.set(2,newQ);
-        prize.append(al);
-        System.out.printf("Ура! Вы выиграли: %s",prize);
-
-
-        // отнимаем подарок из общего количества
-        ArrayList<String> parts = new ArrayList<>(Arrays.asList(ourCatalog.get(random).split(",")));
-        int num = Integer.parseInt(parts.get(2));
-        num = num - 1;
-        String newNum = Integer.toString(num);
-        parts.set(2,newNum);
-        StringBuilder nn = new StringBuilder();
-        for (String el: parts) {
-            if (nn.length()>0) nn.append(",");
-            nn.append(el);
+        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+        for (String el: ourCatalog) {
+            ArrayList<String> new_el = new ArrayList<>(Arrays.asList(el.split(",")));
+            list.add(new_el);
         }
-        ourCatalog.set(random,nn.toString());
 
-        // вносим изменения в наш общий каталог
-        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
-                "db\\Catalog.txt");
-        ourDb.write(ourCatalog);
+        int totalPercentage = 0;
+        for (ArrayList<String> toy: list) {
+            totalPercentage += Integer.parseInt(toy.get(7));
+        }
 
-        // записываем в список подарков
-        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\" +
-                "program\\db\\WonToys.txt");
+        int randomNumber = rnd.nextInt(totalPercentage);
+        int currentPercentage = 0;
+        for (ArrayList<String> toy: list) {
+            currentPercentage += Integer.parseInt(toy.get(7));
+            if (randomNumber < currentPercentage){
+                System.out.println(toy);
+                break;
+            }
+        }
 
-        ArrayList<String> prizeList = new ArrayList<>();
-        prizeList.add(prize.toString());
-        ourPrize.write(prizeList);
+
+
+
+
+
+
+
+
+//        // отнимаем подарок из общего количества
+//        ArrayList<String> parts = new ArrayList<>(Arrays.asList(ourCatalog.get(random).split(",")));
+//        int num = Integer.parseInt(parts.get(2));
+//        num = num - 1;
+//        String newNum = Integer.toString(num);
+//        parts.set(2,newNum);
+//        StringBuilder nn = new StringBuilder();
+//        for (String el: parts) {
+//            if (nn.length()>0) nn.append(",");
+//            nn.append(el);
+//        }
+//        ourCatalog.set(random,nn.toString());
+//
+//
+//        // вносим изменения в наш общий каталог
+//        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
+//                "db\\Catalog.txt");
+//        ourDb.write(ourCatalog);
+//
+//        // записываем в список подарков
+//        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\" +
+//                "program\\db\\WonToys.txt");
+//
+//        ArrayList<String> prizeList = new ArrayList<>();
+//        prizeList.add(prize.toString());
+//        ourPrize.write(prizeList);
     }
+
+
 
 
     @Override
