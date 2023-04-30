@@ -6,12 +6,13 @@ public class Toy {
     protected String brand;
     protected String countryOfManufacture;
     protected String type;
-    protected String minimumAge;
+    protected int minimumAge;
     protected String material;
     protected int quantity;
+    protected int frequency;
 
-    public Toy(int id, String type, int quantity, String countryOfManufacture, String minimumAge, String material,
-               String brand) {
+    public Toy(int id, String type, int quantity, String countryOfManufacture, int minimumAge, String material,
+               String brand, int frequency) {
         this.id = id;
         this.brand = brand;
         this.countryOfManufacture = countryOfManufacture;
@@ -19,16 +20,12 @@ public class Toy {
         this.material = material;
         this.type = type;
         this.quantity = quantity;
+        this.frequency = frequency;
     }
-
-//    public String toString(){
-//        return "Артикул: " + id + ", Тип товара: " + type + ", Бренд: " + brand +
-//                ", Страна производства: " + countryOfManufacture + ", Минимальный возраст: " + minimumAge +
-//                ", Материал изготовления: " + material;
-//    }
 
     public String toString(){
-        return id + "," + type + "," + quantity + "," + countryOfManufacture + "," + minimumAge + "," + material + "," +
-                brand;
+        return  id + "," + type + "," + quantity + "," + countryOfManufacture + "," + minimumAge + "," + material + "," +
+                brand + "," + frequency;
     }
+
 }
