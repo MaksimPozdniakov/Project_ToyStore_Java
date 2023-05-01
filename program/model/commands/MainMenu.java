@@ -19,6 +19,7 @@ public class MainMenu {
         commandList.add(new AddNewToy(console));
         commandList.add(new RemoveToy(console));
         commandList.add(new WinPrize(console));
+        commandList.add(new Search(console));
         commandList.add(new SaveCatalog(console));
         commandList.add(new CloseCatalog(console));
     }

@@ -94,8 +94,7 @@ public class ConsoleUI2 implements View {
         String countryOfManufacture = scanner.nextLine();
 
         System.out.print("Укажите минимальный возраст: ");
-        int minimumAge = scanner.nextInt();
-        scanner.nextLine();
+        String minimumAge = scanner.nextLine();
 
         System.out.print("Укажите материал изготовления: ");
         String material = scanner.nextLine();
@@ -112,5 +111,11 @@ public class ConsoleUI2 implements View {
 
         System.out.println("Новая игрушка добавлена");
 
+    }
+
+    public void search(){
+        System.out.print("Что ищите? ");
+        String userChoice = scanner.next();
+        presenter.searchStr(userChoice);
     }
 }
