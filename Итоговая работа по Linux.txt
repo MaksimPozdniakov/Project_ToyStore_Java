@@ -1,0 +1,145 @@
+1)   Используйте команды операционной системы Linux и создайте две новых директории – «Игрушки для школьников» и «Игрушки для дошколят»
+max-msi@linux:~$ mkdir finale_attestation
+max-msi@linux:~$ cd finale_attestation
+max-msi@linux:~/finale_attestation$ mkdir Игрушки_для_школьников Игрушки_для_дошколят
+max-msi@linux:~/finale_attestation$ ll
+итого 16
+drwxrwxr-x  4 max-msi max-msi 4096 апр 30 15:57 ./
+drwxr-x--- 18 max-msi max-msi 4096 апр 30 15:54 ../
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 15:57 Игрушки_для_школьников/
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 15:57 Игрушки_для_дошколят/
+max-msi@linux:~/finale_attestation$ 
+
+2)   Создайте в директории «Игрушки для школьников» текстовые файлы - «Роботы», «Конструктор», «Настольные игры»
+max-msi@linux:~$ cd finale_attestation
+max-msi@linux:~/finale_attestation$ ll
+итого 16
+drwxrwxr-x  4 max-msi max-msi 4096 апр 30 15:57 ./
+drwxr-x--- 18 max-msi max-msi 4096 апр 30 18:51 ../
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 15:57 Игрушки_для_школьников/
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 15:57 Игрушки_для_дошколят/
+max-msi@linux:~/finale_attestation$ cd Игрушки_для_школьников
+max-msi@linux:~/finale_attestation/Игрушки_для_школьников$ touch Конструктор Роботы Настольные_игры
+max-msi@linux:~/finale_attestation/Игрушки_для_школьников$ ll
+итого 8
+drwxrwxr-x 2 max-msi max-msi 4096 апр 30 18:57 ./
+drwxrwxr-x 4 max-msi max-msi 4096 апр 30 15:57 ../
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 18:57 Конструктор
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 18:57 Настольные_игры
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 18:57 Роботы
+max-msi@linux:~/finale_attestation/Игрушки_для_школьников$ 
+
+3)    Создайте в директории «Игрушки для дошколят» текстовые файлы «Мягкие игрушки», «Куклы», «Машинки»
+max-msi@linux:~/finale_attestation/Игрушки_для_школьников$ cd
+max-msi@linux:~$ cd finale_attestation
+max-msi@linux:~/finale_attestation$ cd Игрушки_для_дошколят
+max-msi@linux:~/finale_attestation/Игрушки_для_дошколят$ touch Мягкие_игрушки Куклы Машинки
+max-msi@linux:~/finale_attestation/Игрушки_для_дошколят$ ll
+итого 8
+drwxrwxr-x 2 max-msi max-msi 4096 апр 30 19:01 ./
+drwxrwxr-x 4 max-msi max-msi 4096 апр 30 15:57 ../
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 19:01 Куклы
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 19:01 Машинки
+-rw-rw-r-- 1 max-msi max-msi    0 апр 30 19:01 Мягкие_игрушки
+max-msi@linux:~/finale_attestation/Игрушки_для_дошколят$ 
+
+4)   Объединить 2 директории в одну «Имя Игрушки»
+max-msi@linux:~/finale_attestation$ mkdir Имя_Игрушки
+max-msi@linux:~/finale_attestation$ ll
+итого 20
+drwxrwxr-x  5 max-msi max-msi 4096 апр 30 19:07 ./
+drwxr-x--- 18 max-msi max-msi 4096 апр 30 18:51 ../
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 19:01 Игрушки_для_дошколят/
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 18:57 Игрушки_для_школьников/
+drwxrwxr-x  2 max-msi max-msi 4096 апр 30 19:04 Имя_Игрушки/
+
+max-msi@linux:~/finale_attestation$ mv Игрушки_для_школьников Игрушки_для_дошколят Имя_Игрушки
+max-msi@linux:~/finale_attestation$ cd Имя_Игрушки
+max-msi@linux:~/finale_attestation/Имя_Игрушки$ ll
+итого 16
+drwxrwxr-x 4 max-msi max-msi 4096 апр 30 19:09 ./
+drwxrwxr-x 3 max-msi max-msi 4096 апр 30 19:09 ../
+drwxrwxr-x 2 max-msi max-msi 4096 апр 30 19:01 Игрушки_для_дошколят/
+drwxrwxr-x 2 max-msi max-msi 4096 апр 30 18:57 Игрушки_для_школьников/
+max-msi@linux:~/finale_attestation/Имя_Игрушки$ 
+
+5)   Переименовать директорию «Имя Игрушки» в «Игрушки»
+max-msi@linux:~/finale_attestation/Имя_Игрушки$ cd ..
+max-msi@linux:~/finale_attestation$ mv Имя_Игрушки Игрушки
+max-msi@linux:~/finale_attestation$ ll
+итого 12
+drwxrwxr-x  3 max-msi max-msi 4096 апр 30 19:10 ./
+drwxr-x--- 18 max-msi max-msi 4096 апр 30 18:51 ../
+drwxrwxr-x  4 max-msi max-msi 4096 апр 30 19:09 Игрушки/
+max-msi@linux:~/finale_attestation$ 
+
+6)   Просмотреть содержимое каталога «Игрушки».
+max-msi@linux:~/finale_attestation$ cd Игрушки
+max-msi@linux:~/finale_attestation/Игрушки$ ls
+Игрушки_для_дошколят  Игрушки_для_школьников
+max-msi@linux:~/finale_attestation/Игрушки$ cd Игрушки_для_школьников
+max-msi@linux:~/finale_attestation/Игрушки/Игрушки_для_школьников$ ls
+Конструктор  Настольные_игры  Роботы
+max-msi@linux:~/finale_attestation/Игрушки/Игрушки_для_школьников$ cd ..
+max-msi@linux:~/finale_attestation/Игрушки$ cd Игрушки_для_дошколят
+max-msi@linux:~/finale_attestation/Игрушки/Игрушки_для_дошколят$ ls
+Куклы  Машинки  Мягкие_игрушки
+max-msi@linux:~/finale_attestation/Игрушки/Игрушки_для_дошколят$ 
+
+7)   Установить и удалить snap-пакет. (Любой, какой хотите)
+max-msi@linux:~$ sudo su
+[sudo] пароль для max-msi: 
+root@linux:/home/max-msi# snap find opera
+Название             Версия        Издатель           Примечание  Описание
+opera                98.0.4759.15  opera-software✓    -           Fast, secure, easy-to-use browser
+opera-beta           98.0.4759.21  opera-software✓    -           Fast and secure web browser
+opera-developer      99.0.4780.0   opera-software✓    -           Fast and secure web browser
+opera-proxy          1.2.4         snawoot            -           Standalone Opera VPN proxies client.
+operator-builder     0.5.0         vmware-tanzu-labs  -           A Kubebuilder plugin to accelerate the development of Kubernetes operators.
+contasimple          3.1.0         enriverd           -           Contasimple Desktop
+office365webdesktop  0.7.2         rafgui012          -           It is a simple desktop application for Office365 of the web version for linux
+xdm-snap             8.0.25        capecrusader-121   -           Experimental Builds Of The XDM Download Manger's Upcoming Version
+devoperator          1.7.1         art-hens-teeth     classic     DevOps tools
+root@linux:/home/max-msi# snap install opera
+opera 98.0.4759.15 от Opera (opera-software✓) установлен
+root@linux:/home/max-msi# snap remove opera
+opera удалён
+root@linux:/home/max-msi# 
+
+8)   Добавить произвольную задачу для выполнения каждые 3 минуты (Например, запись в текстовый файл чего-то или копирование из каталога А в каталог Б).
+root@linux:/home/max-msi# touch file.txt
+root@linux:/home/max-msi# crontab -l
+no crontab for root
+
+max-msi@linux:~$ crontab -e
+no crontab for max-msi - using an empty one
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+  2. /usr/bin/vim.tiny
+  3. /bin/ed
+
+Choose 1-3 [1]: 1
+crontab: installing new crontab
+
+max-msi@linux:/var/log$ cat syslog | grep finale_attestation
+Apr 30 19:27:01 linux CRON[4162]: (root) CMD (echo "test" >> /home/max-msi/finale_attestation/file.txt)
+Apr 30 19:30:01 linux CRON[4203]: (root) CMD (echo "test" >> /home/max-msi/finale_attestation/file.txt)
+Apr 30 19:30:01 linux CRON[4205]: (max-msi) CMD (echo "test" >> /home/max-msi/finale_attestation/file.txt)
+max-msi@linux:/var/log$ 
+
+max-msi@linux:~$ cd finale_attestation
+max-msi@linux:~/finale_attestation$ ll
+итого 16
+drwxrwxr-x  3 max-msi max-msi 4096 апр 30 19:27 ./
+drwxr-x--- 18 max-msi max-msi 4096 апр 30 19:27 ../
+-rw-r--r--  1 root    root      15 апр 30 19:33 file.txt
+drwxrwxr-x  4 max-msi max-msi 4096 апр 30 19:09 Игрушки/
+max-msi@linux:~/finale_attestation$ cat file.txt
+test
+test
+test
+max-msi@linux:~/finale_attestation$ 
+
+
+
