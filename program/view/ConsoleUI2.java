@@ -116,6 +116,8 @@ public class ConsoleUI2 implements View {
     public void search(){
         System.out.print("Что ищите? ");
         String userChoice = scanner.next();
+        System.out.println();
         presenter.searchStr(userChoice);
+        System.out.println();
     }
 }

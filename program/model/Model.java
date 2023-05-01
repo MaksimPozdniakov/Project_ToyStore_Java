@@ -143,10 +143,24 @@ public class Model implements Service {
     }
 
     public void search(String searchToy){
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean isFound = false;
+        createHelpAL();
         for (int i = 0; i < ourCatalog.size(); i++) {
             if (ourCatalog.get(i).contains(searchToy)) {
-                System.out.println(ourCatalog.get(i));
+                ArrayList<String> searchToyList = new ArrayList<>(Arrays.asList(ourCatalog.get(i).split(",")));
+
+                for (int j = 0; j < searchToyList.size()-1; j++) {
+                    stringBuilder.append(namePosition.get(j));
+                    stringBuilder.append(searchToyList.get(j));
+                }
+                System.out.println("Такая игрушка в каталоге есть");
+                System.out.println(stringBuilder);
+                isFound = true;
             }
+        }
+        if (!isFound){
+            System.out.println("Такой игрушки в каталоги нет");
         }
     }
 }
