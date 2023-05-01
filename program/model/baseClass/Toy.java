@@ -6,12 +6,12 @@ public class Toy {
     protected String brand;
     protected String countryOfManufacture;
     protected String type;
-    protected int minimumAge;
+    protected String minimumAge;
     protected String material;
     protected int quantity;
     protected int frequency;
 
-    public Toy(int id, String type, int quantity, String countryOfManufacture, int minimumAge, String material,
+    public Toy(int id, String type, int quantity, String countryOfManufacture, String minimumAge, String material,
                String brand, int frequency) {
         this.id = id;
         this.brand = brand;

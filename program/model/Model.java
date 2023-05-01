@@ -122,7 +122,7 @@ public class Model implements Service {
             prize.append(namePosition.get(j));
             prize.append(al.get(j));
         }
-
+        System.out.println("Ура! Вы выиграли:");
         System.out.println(prize);
 
         // записываем в список подарков
@@ -142,4 +142,11 @@ public class Model implements Service {
         ourDb.write(ourCatalog);
     }
 
+    public void search(String searchToy){
+        for (int i = 0; i < ourCatalog.size(); i++) {
+            if (ourCatalog.get(i).contains(searchToy)) {
+                System.out.println(ourCatalog.get(i));
+            }
+        }
+    }
 }

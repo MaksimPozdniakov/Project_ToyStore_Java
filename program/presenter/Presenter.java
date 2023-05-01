@@ -41,4 +41,8 @@ public class Presenter {
     public void delToy(int index){
         service.delToy(index);
     }
+
+    public void searchStr(String searchToy){
+        service.search(searchToy);
+    }
 }
