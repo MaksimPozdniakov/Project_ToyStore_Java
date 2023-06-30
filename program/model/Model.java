@@ -23,8 +23,8 @@ public class Model implements Service {
 
     @Override
     public ArrayList<String> openDb() throws FileNotFoundException {
-        ReadFile ourDb = new ReadFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
-                "db\\Catalog.txt");
+        ReadFile ourDb = new ReadFile("C:\\Users\\PMPav\\OneDrive\\Рабочий стол\\Projects\\" +
+                "Project_ToyStore_Java\\program\\db\\Catalog.txt");
         ourDb.read(ourCatalog);
         return ourCatalog;
     }
@@ -106,8 +106,8 @@ public class Model implements Service {
         ourCatalog.set(index,nn.toString());
 
         // вносим изменения в наш общий каталог
-        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
-                "db\\Catalog.txt");
+        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\OneDrive\\Рабочий стол\\Projects\\" +
+                "Project_ToyStore_Java\\program\\db\\Catalog.txt");
         ourDb.write(ourCatalog);
 
         // выводим на экран выигрыш
@@ -126,8 +126,8 @@ public class Model implements Service {
         System.out.println(prize);
 
         // записываем в список подарков
-        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\" +
-                "program\\db\\WonToys.txt");
+        WriteFile ourPrize = new WriteFile("C:\\Users\\PMPav\\OneDrive\\Рабочий стол\\Projects\\" +
+                "Project_ToyStore_Java\\program\\db\\WonToys.txt");
 
         ArrayList<String> prizeList = new ArrayList<>();
         prizeList.add(stringBuilder.toString());
@@ -137,8 +137,8 @@ public class Model implements Service {
 
     @Override
     public void write(){
-        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\Desktop\\Projects\\Project_ToyStore_Java\\program\\" +
-                "db\\Catalog.txt");
+        WriteFile ourDb = new WriteFile("C:\\Users\\PMPav\\OneDrive\\Рабочий стол\\" +
+                "Projects\\Project_ToyStore_Java\\program\\db\\Catalog.txt");
         ourDb.write(ourCatalog);
     }
 
